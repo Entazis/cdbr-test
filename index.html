@@ -4,21 +4,28 @@
   <script>
   window.fbAsyncInit = function() {
     FB.init({
-      appId            : '1533822993331638',
+      appId            : 'your-app-id',
       autoLogAppEvents : true,
       xfbml            : true,
       version          : 'v2.12'
     });
   };
-
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}
      js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     js.src = "https://connect.facebook.net/hu_HU/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
-</script>
-<h1>Testing cdbr chat plugin...</h1>
+  </script>
+  <div class="fb-customerchat"
+    page_id="2060766834178818"
+    theme_color="#ff5ca1"
+    logged_in_greeting="Szia! Örülök, hogy itt vagy, segíthetek valamiben?"
+    logged_out_greeting="Szia! Örülök, hogy itt vagy, segíthetek valamiben?"
+  ></div>
+  
+  <h1>Testing cdbr chat plugin...</h1>
+  
 </body>
 </html>
