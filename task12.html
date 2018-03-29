@@ -1,0 +1,224 @@
+<style>
+  
+  .tagging-assignment .assignment-body {
+    margin: 20px 0;
+  }
+
+  .tagging-assignment .assignment-visualizer {
+    font-size: 80%;
+    position: relative;
+    padding: 40px 20px;
+    margin-top: 40px;
+    border-radius: 4px;
+    border: 1px solid #e1e8ed;
+  }
+
+  .assignment-visualizer .assignment-input,
+  .assignment-visualizer .assignment-output {
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .assignment-visualizer .assignment-input {
+    padding-bottom: 40px;
+    border-bottom: 1px solid #e1e8ed;
+  }
+
+  .assignment-input input {
+    text-align: center;
+  }
+
+  .assignment-visualizer .assignment-output {
+    padding-top: 40px;
+  }
+
+  .assignment-visualizer .box-label {
+    font-size: 90%;
+    background: #e1e8ed;
+    position: absolute;
+    right: 0;
+    padding: 3px;
+  }
+
+  .assignment-visualizer .box-label.top {
+    border-bottom-left-radius: 4px;
+    top: 0;
+  }
+
+  .assignment-visualizer .box-label.bottom {
+    border-top-left-radius: 4px;
+    bottom: 0;
+  }
+
+  .tagging-assignment .assignment-controls .btn:focus {
+    outline: none;
+  }
+
+  .assignment-code input {
+    width: 65px;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: 19px;
+    line-height: 1.6;
+    outline: none;
+    border: 1px solid #31708f;
+    box-shadow: 0px 0px 4px #31708f;
+  }
+
+  .tagging-assignment button[data-direction] {
+    margin-bottom: 10px;
+  }
+
+  input[type="text"]:disabled {
+    cursor: not-allowed;
+  }
+
+</style>
+
+<p>Ültessük át az előbbi elméletet a gyakorlatba! Különböző szöveges tartalmakat fogok adni neked, és megmondom, hogyan címkézd fel ezeket. A feladatod az lesz, hogy köréjük írd a megfelelő nyitó és záró HTML tageket.</p>
+
+<p>Az alábbi szövegnek <em>paragrafusként</em> (bekezdésként) kéne megjelennie. Címkézd fel a 
+<code>p</code> taggel.</p>
+
+<p class="note">Megjegyzés: Nyitó kacsacsőrt (<code>&lt;</code>) az <kbd>AltGr</kbd> + <kbd>M</kbd>, zárót (<code>&gt;</code>) pedig a <kbd>AltGr</kbd> + <kbd>.</kbd> billentyűkombinációval tudsz írni. Mac-en az <kbd>Option</kbd> + <kbd>Shift</kbd> + <kbd>y</kbd> és az <kbd>Option</kbd> + <kbd>Shift</kbd> + <kbd>x</kbd> kombinációkra lesz magyar billentyűzeten szükséged.</p>
+
+<section class="tagging-assignment">
+  <div class="row">
+    <div class="col-md-12">
+        <div class="assignment-body">
+          <div class="assignment-visualizer">
+            <div class="assignment-input">
+              <span class="box-label top">kód</span>
+              <div class="assignment-code">
+                <input type="text" class="code-input opening text-info">
+                <code class="code-predefined"></code>
+                <input type="text" class="code-input closing text-info">
+              </div> <!-- /.assignment-code -->
+            </div> <!-- /.assignment-input -->
+            <div class="assignment-output">
+              <span class="box-label bottom">eredmény</span>
+              <div class="assignment-hint alert" role="alert"></div> <!-- /.alert -->
+            </div> <!-- /.assignment-output -->
+          </div> <!-- /.assignment-visualizer -->
+        </div> <!-- /.assignment-body -->
+    </div> <!-- /.col-md-12 -->
+  </div> <!-- /.row -->
+</section> <!-- /.tagging-assignment -->
+
+
+
+<script>
+  
+  var isSolved = false;
+
+  var tasks = [
+    {
+      id: 1,
+      code: "Én egy egyszerű bekezdés vagyok valami érdekes dologról, ami valakivel történt valamikor, valahol a világban.",
+      initialHint: "Próbálj HTML tageket írni a fenti dobozokba. Az eredmény itt fog megjelenni.",
+      correctAnswer: ["<p>", "</p>"]
+    }
+  ]
+
+  $(function () {
+    
+    var openingTag = '';
+    var closingTag = '';
+    var correctAnswer = '';
+    var currentTask = 1;
+    var htmlTagPattern = /<\/?[\w\s="/.':;#-\/\?]+>/gi;
+    var $codePredefined = $('.code-predefined');
+    var $hint = $('.assignment-hint');
+
+    function renderTask(taskId) {
+      var i = taskId - 1;
+      $codePredefined.text(tasks[i].code);
+      $hint.text(tasks[i].initialHint); 
+      correctAnswer = tasks[i].correctAnswer;
+    }
+
+    renderTask(currentTask, true);
+
+    $('.code-input').on('keyup', function() {
+      // Save the valid HTML tags to the variables.
+      if ($(this).hasClass('opening')) {
+        openingTag = $(this).val().match(htmlTagPattern);
+      } else {
+        closingTag = $(this).val().match(htmlTagPattern);
+      }
+
+      // This function is used in the if-else statements below,
+      // and manipulates the alert classes and hint text.
+      function changeHint(classRemoved, classAdded, hintText) {
+        $hint.removeClass(classRemoved);
+        $hint.addClass(classAdded);
+        $hint.text(hintText);
+      }
+
+      // If there are two valid tags check for syntax and if they match.
+      if (openingTag && closingTag) {
+        if (closingTag[0].indexOf('/') === -1) {
+          changeHint('alert-success', 'alert-info', "Mindkét tag helyesnek tűnik, csak ne feledd a törtjelet (/) a záró tagből.");
+        } else {
+          if (openingTag[0] === closingTag[0].replace('/', '')) {
+            if (openingTag[0] === correctAnswer[0] && closingTag[0] === correctAnswer[1]) {
+              changeHint('alert-info', 'alert-success', "Megcsináltad!");
+              isSolved = true;
+            } else {
+              changeHint('alert-success', 'alert-info', "A tagek jók, de nem ez volt a feladatod.");
+              isSolved = false; 
+            }
+          } else {
+            changeHint('alert-success', 'alert-info', "Mindkét tag helyes, de nem egymáshoz valók. Változtasd meg úgy, hogy párt alkossanak.");
+            isSolved = false;
+          }
+        }
+      } else if (openingTag) {
+        changeHint('alert-success', 'alert-info', "A nyitó tag jónak tűnik. Írj egy záró taget is.")
+        isSolved = false;
+      } else if (closingTag) {
+        changeHint('alert-success', 'alert-info', "A záró tag jónak tűnik. Írj egy nyitó taget is.")
+        isSolved = false;
+      } else {
+        $hint.removeClass('alert-info');
+        $hint.text("Próbálj HTML tageket írni a fenti dobozokba. Az eredmény itt fog megjelenni.");
+        isSolved = false;
+      }
+    });
+
+  });
+</script>
+
+<script type="text/javascript">
+    
+    /** Loads the user submission */
+    var customLoadSubmissionHandler = function() {
+        // Saves the string in the hidden input to a variable.
+        var submission = $('#submission').val();
+        // Splits the contents of the string to an array.
+        var submissionArray = submission.split(';');
+        // Loads the opening and closing input from the array.
+        $('.assignment-code .opening').val(submissionArray[0]);
+        $('.assignment-code .closing').val(submissionArray[1]);
+        // Fires two keyup events to trigger the validation.
+        $('.assignment-code .opening').keyup();
+        $('.assignment-code .closing').keyup();
+    };
+
+    /** Saves the user submission
+     * @param {function} callback
+     */
+    var customSaveSubmissionHandler = function(callback) {
+        // Saves the contents of the input fields and creates a string from them with a delimiter.
+        var userSubmissionOpening = $('.assignment-code .opening').val();
+        var userSubmissionClosing = $('.assignment-code .closing').val();
+        var submission = $('#submission').val(userSubmissionOpening + ';' + userSubmissionClosing);
+
+        /* Don't forget about skipped. */
+        $("#is-skipped").val(!isSolved);
+                
+        /* Do callback */
+        callback();
+    }
+</script>
