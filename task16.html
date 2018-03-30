@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="hu-HU">
+  <head>
+    <!--suppress HtmlUnknownTarget -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>CodeBerry </title>
+    
+    <!-- Styles -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' href='/datatables-bs/css/dataTables.bootstrap.css'/>
+    
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="/vendor/prismjs/prism.css"/>
+    <link rel="stylesheet" href="/vendor/humanejs/libnotify.css"/>
+    <link rel="stylesheet" href="/vendor/flag-icon/css/flag-icon.min.css"/>
+    
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    
+    <!-- Favicon section -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/images/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/favicon/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/images/favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/images/favicon/manifest.json">
+    <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/images/favicon/mstile-144x144.png">
+    <meta name="msapplication-config" content="/images/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="/datatables/js/jquery.dataTables.js"></script>
+    <script src="/datatables-bs/js/dataTables.bootstrap.js"></script>
+    <!-- Helper scripts -->
+    <script type="text/javascript">
+        /* Get query parameter */
+        var getQueryParameterByName = function(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)", "i"),
+                    results = regex.exec(window.location.href);
+            if (!results) {
+                return null;
+            }
+            if (!results[2]) {
+                return '';
+            }
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        };
+    </script>
+    <!-- /Helper scripts -->
+  </head>
+  <body>
+<section class="content lesson-content">
+
+  <style>
+  .interactive-assignment .assignment-visualizer {
+    margin-top: 5px;
+  }
+
+  .interactive-assignment .assignment-controller {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px 15px;
+    border-radius: 4px;
+    border: 1px solid #e1e8ed;
+  }
+
+  .interactive-assignment .assignment-code,
+  .interactive-assignment .assignment-output {
+    border-radius: 4px;
+    margin: 10px 0;
+    border: 1px solid #e1e8ed;
+    min-height: 110px;
+  }
+
+  .interactive-assignment .assignment-output {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .interactive-assignment .assignment-controller:hover {
+    border: 1px solid #ccd6dd;      
+  }
+
+  .interactive-assignment .assignment-output p {
+    margin-bottom: 0;
+  }
+
+  .interactive-assignment .assignment-output img {
+    padding: 20px;
+  }
+
+  .assignment-box-label {
+    font-size: 70%;
+    background: #e1e8ed;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 3px;
+    border-top-left-radius: 4px;
+  }
+</style>
+
+<p>A szöveg mellett a második leggyakoribb webes tartalom a kép.</p>
+
+<p>A képeket alapvetően másként kezeli a HTML, mint a tiszta szöveget. Amikor hozzáadsz egy bekezdést az oldaladhoz, a konkrét tartalmat, a szöveget magában a HTML dokumentumban tárolod. Ezt nem tudod megtenni egy képpel. Nincs arra egyszerű út, hogy egy képet a szöveg alapú HTML dokumentumban tárolj.</p>
+
+<p>A megoldás az, hogy a képet elhelyezed valahol máshol, és csak rámutatsz a HTML-ben. Gyakorlatilag két külön utasítást adsz ilyenkor a gépnek a HTML-en keresztül: "Jeleníts meg egy képet! Ezen a helyen találod meg a szükséges képet."</p>
+
+<p>Nézzük meg ezt gyakorlatban. Az alábbi gombok három különböző képet mutatnak. Próbáld megnyomni ezeket, és figyeld meg, hogyan változik a kód és az eredmény. Próbáld kitalálni, a kód melyik része a "kép megjelenítése", és melyik rész utal a kép helyére.</p>
+
+<div class="row interactive-assignment">
+  <div class="row">
+    <div class="assignment-controller col-md-12">
+      <button class="btn btn-primary" data-image="1">Panda</button>
+      <button class="btn btn-primary" data-image="2">Vörös panda</button>
+      <button class="btn btn-primary" data-image="3">Mosómedve</button>  
+    </div> <!-- /.col-md-12 -->
+  </div> <!-- /.row --> 
+
+  <div class="row">
+    <div class="assignment-code col-md-12">
+      <span class="assignment-box-label">kód</span>
+      <pre>
+        <code class="language-html">
+          &lt;img src=""&gt;
+        </code>
+      </pre>
+    </div> <!-- /.col-md-12 -->
+  </div> <!-- /.row --> 
+
+  <div class="row">
+    <div class="assignment-output col-md-12">
+      <span class="assignment-box-label">eredmény</span>
+      <div class="output">
+        <img class="img-responsive center-block" src="" alt="">
+      </div> <!-- /.output -->
+    </div> <!-- /.col-md-12 -->
+  </div> <!-- /.row --> 
+
+</div> <!-- /.interactive-assignment -->
+
+<div class="show-when-tried" style="display:none;">
+  <div class="alert alert-success" role="alert">
+    Nagyszerű! A következő feladatban megtanulod, hogyan is kell ezt csinálni.
+  </div> <!-- /.alert -->
+</div>
+
+<script>
+
+var isSolved = false;
+
+$(function () {
+  var imageSources = [
+    "/content/images/welcome-panda.jpg",
+    "/content/images/welcome-red-panda.jpg",
+    "/content/images/welcome-racoon.jpg"
+  ];
+  var codeVisualizer = $('.assignment-code code');
+  var outputVisualizer = $('.assignment-output .output');
+  var userTried = false;
+  // when the user clicks a button
+  $('.assignment-controller .btn').on('click', function() {
+    codeVisualizer.empty();
+    outputVisualizer.empty();
+    switch($(this).data('image')) {
+        case 1:
+            codeVisualizer.append('&lt;img src="' + imageSources[0] + '"&gt;');
+            outputVisualizer.append('<img class="img-responsive center-block" src="' + imageSources[0] + '">');
+            $('#submission').val(1); // Saves which button was clicked.
+            break;
+        case 2:
+            codeVisualizer.append('&lt;img src="' + imageSources[1] + '"&gt;');
+            outputVisualizer.append('<img class="img-responsive center-block" src="' + imageSources[1] + '">');
+            $('#submission').val(2); // Saves which button was clicked.
+            break;
+        case 3:
+            codeVisualizer.append('&lt;img src="' + imageSources[2] + '"&gt;');
+            outputVisualizer.append('<img class="img-responsive center-block" src="' + imageSources[2] + '">');
+            $('#submission').val(3); // Saves which button was clicked.
+            break;
+        default:
+            codeVisualizer.append('&lt;img src=""&gt;');
+            outputVisualizer.append('<img class="img-responsive center-block" src="">');
+
+    };
+    userTried = true;
+    Prism.highlightElement(codeVisualizer[0]);
+    if(userTried) {
+      $('.show-when-tried').fadeIn();
+      isSolved = true;
+    }
+  })
+  // decide which was clicked
+  // update the source code
+  // show a picture
+  // display reassuring message a bit delayed
+});
+</script>
+
+<script type="text/javascript">
+    
+    /** Loads the user submission */
+    var customLoadSubmissionHandler = function() {
+        // Saves the value of the hidden input field to a variable.
+        var submission = $('#submission').val();
+        // Loops through the buttons and presses the one which has the same data id as the input field.
+        $('.assignment-controller .btn').each(function() {
+          if ($(this).attr('data-image') === submission) {
+            $(this).trigger('click');
+          }
+        });
+
+    };
+
+    /** Saves the user submission
+     * @param {function} callback
+     */
+    var customSaveSubmissionHandler = function(callback) {
+        /** This does almost nothing because the submission
+         * saving is coded into the assignment's switch case.
+         */
+        
+        /* Don't forget is skipped */
+        $("#is-skipped").val(!isSolved);
+
+        /* Do callback */
+        callback();
+    }
+</script>
+
+
+
+    </section>
+  </body>
+</html>
