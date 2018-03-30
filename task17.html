@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="hu-HU">
+  <head>
+    <!--suppress HtmlUnknownTarget -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>CodeBerry </title>
+    
+    <!-- Styles -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' href='/datatables-bs/css/dataTables.bootstrap.css'/>
+    
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="/vendor/prismjs/prism.css"/>
+    <link rel="stylesheet" href="/vendor/humanejs/libnotify.css"/>
+    <link rel="stylesheet" href="/vendor/flag-icon/css/flag-icon.min.css"/>
+    
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    
+    <!-- Favicon section -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/images/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/favicon/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/images/favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/images/favicon/manifest.json">
+    <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/images/favicon/mstile-144x144.png">
+    <meta name="msapplication-config" content="/images/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="/datatables/js/jquery.dataTables.js"></script>
+    <script src="/datatables-bs/js/dataTables.bootstrap.js"></script>
+    <!-- Helper scripts -->
+    <script type="text/javascript">
+        /* Get query parameter */
+        var getQueryParameterByName = function(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)", "i"),
+                    results = regex.exec(window.location.href);
+            if (!results) {
+                return null;
+            }
+            if (!results[2]) {
+                return '';
+            }
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        };
+    </script>
+    <!-- /Helper scripts -->
+  </head>
+  <body>
+<section class="content lesson-content">
+
+    <style>
+  .tagging-assignment .assignment-card {
+    position: relative;
+    padding: 50px 10px 0 10px;
+    border-radius: 4px;
+    border: 1px solid #e1e8ed;
+  }
+
+  .tagging-assignment .assignment-title {
+    position: absolute;
+    width: 100%;
+    max-height: 50px;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    background: #e1e8ed;
+    text-align: center;
+  }
+
+  .tagging-assignment .assignment-body {
+    margin: 20px 0;
+  }
+
+  .assignment-body .assignment-text {
+    padding-top: 5px;
+  }
+
+  .tagging-assignment .assignment-visualizer {
+    font-size: 80%;
+    position: relative;
+    padding: 40px 20px;
+    margin-top: 40px;
+    border-radius: 4px;
+    border: 1px solid #e1e8ed;
+  }
+
+  .assignment-visualizer .assignment-input {
+    padding-bottom: 40px;
+    border-bottom: 1px solid #e1e8ed;
+  }
+
+  .assignment-visualizer .assignment-output {
+    padding-top: 40px;
+  }
+
+  .assignment-visualizer .box-label {
+    font-size: 90%;
+    background: #e1e8ed;
+    position: absolute;
+    right: 0;
+    padding: 3px;
+  }
+
+  .assignment-visualizer .box-label.top {
+    border-bottom-left-radius: 4px;
+    top: 0;
+  }
+
+  .assignment-visualizer .box-label.bottom {
+    border-top-left-radius: 4px;
+    bottom: 0;
+  }
+
+  .assignment-code input {
+    width: 100%;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: 19px;
+    line-height: 1.6;
+    padding: 3px;
+    outline: none;
+    border: 1px solid #31708f;
+    box-shadow: 0px 0px 4px #31708f;
+  }
+
+  .assignment-output .output-image img {
+    max-width: 100%;
+  }
+
+  input[type="text"]:disabled {
+    cursor: not-allowed;
+  }
+
+  .show-when-solved {
+    display: none;
+    margin-top: 20px;
+  }
+
+</style>
+
+<p>Amikor be szeretnél illeszteni egy képet az oldalra, az <code>img</code> tagre lesz szükséged.</p>
+
+<p class="note">Megjegyzés: az <code>img</code> az "image" angol szó rövidítése. Ez magyarul képet jelent.</p>
+
+<p>Így néz ki, amikor üres (vagyis amikor még nem mutat egy képre sem):</p>
+
+<pre>
+  <code class="language-html">
+    &lt;img src=""&gt;
+  </code>
+</pre>
+
+<p>A varázslat az <code>src=""</code> részben történik. (Az src a "source" angol szóra utal, amely magyarul forrást jelent.)</p>
+
+<p>Ez az úgynevezett <strong>source attribútum</strong>, amely a kép pontos helyét tartalmazza majd. (Ez az "ezen a helyen találod a képet" utasítás a gép számára.)</p>
+
+<p>Amikor egy képet feltöltesz valahová az internetre, kap egy egyedi elérési címet – egy linket –, amelyen keresztül meg tudod nyitni. A legegyszerűbben úgy teheted elérhetővé ugyanezt a képet a HTML dokumentumban, ha az egyedi címét bemásolod az <code>src</code> attribútumba. Az eredmény valahogy így fog kinézni:</p>
+
+<pre>
+  <code class="language-html">
+    &lt;img src="https://az-en-kep-tarhelyem.hu/az-en-kepem.jpg"&gt;
+  </code>
+</pre>
+
+<p>Oké, próbáljuk ki ezt!</p>
+
+<section class="tagging-assignment">
+  <div class="row">
+    <div class="col-md-12">
+      <section class="assignment-card">
+        <div class="assignment-title">
+          Feladat
+        </div> <!-- /.assignment-title -->
+        <div class="assignment-body">
+          <div class="assignment-text">
+            <p>Hozz létre egy <code>img</code> taget a lenti kódmezőbe, és az <code>src=""</code> attribútumába másold be a következő címet:</p>
+            <pre>
+              <code class="language-txt">https://orange.codeberryschool.com/content/images/welcome-cat-on-bike.jpg</code>
+            </pre>
+          </div> <!-- /.assignment-text -->
+          <div class="assignment-visualizer">
+            <div class="assignment-input">
+              <span class="box-label top">kód</span>
+              <div class="assignment-code">
+                <input type="text" class="code-input text-info">
+              </div> <!-- /.assignment-code -->
+            </div> <!-- /.assignment-input -->
+            <div class="assignment-controls">
+              <button class="btn btn-info btn-block check-solution">
+                Ellenőrzöm a megoldásomat
+              </button>
+            </div> <!-- /.assignment-controls -->
+            <div class="assignment-output">
+              <span class="box-label bottom">eredmény</span>
+              <div class="alert assignment-hint" role="alert"></div> <!-- /.alert -->
+              <div class="output-image"></div> <!-- /.output-image -->
+            </div> <!-- /.assignment-output -->
+          </div> <!-- /.assignment-visualizer -->
+        </div> <!-- /.assignment-body -->
+      </section> <!-- /.assignment-card -->
+    </div> <!-- /.col-md-12 -->
+  </div> <!-- /.row -->
+</section> <!-- /.tagging-assignment -->
+
+<section class="show-when-solved">
+  <p class="note">Megjegyzés: talán észrevetted, hogy az <code>img</code> elemnek nincs záró tagje a fenti kódban. Ne aggódj, nem véletlen hagytuk le, egyszerűen csak az <code>img</code> egy úgynevezett önmagát záró (angolul "self-closing") tag, amelynek nincs szüksége záró párra.</p>
+
+  <p class="tip">Tipp: az egyedi címeknek, mint amit fentebb is használtál, külön neve van: URL. Ez a "Uniform Resource Locator" angol kifejezést takarja, amit talán úgy lehetne fordítani, hogy Egységes Erőforrás Azonosító. Minden webes tartalomnak van saját URL-je.</p>
+</section>
+
+<script>
+
+  var isSolved = false;
+
+  $(function () {
+    var $checkButton = $('.assignment-controls .check-solution');
+    var $codeInput = $('.code-input');
+    var $hint = $('.assignment-hint');
+    var $output = $('.assignment-output .output-image');
+    var imgSrcPattern = /<img[^>]+src="([^">]+)"/;
+    var htmlTagPattern = /<\/?[\w\s="/.':;#-\/\?]+>/gi;
+
+    $checkButton.on('click', function() {
+      var userInput = $codeInput.val() || '';
+      var userInputTag = userInput.match(htmlTagPattern) || [];
+      var userInputImgSrc = imgSrcPattern.exec(userInputTag[0]) || [];
+
+      $hint.addClass('alert-info');
+      $output.empty();
+      
+      if ((userInput.toLowerCase().indexOf('img') >= 0) && (userInput.toLowerCase().indexOf('src') >= 0)) {
+        if (userInputTag[0] != null) {
+          if(userInputImgSrc[1] != null) {
+            var $newImg = $('<img>').attr('src', userInputImgSrc[1])
+                                    .addClass('center-block img-responsive')
+                                    .on('error', function () {
+                                      $hint.html("Győződj meg róla, hogy pontosan másoltad a kép helyét a <code>src</code> attribútumba."); 
+                                    })
+                                    .on('load', function () { 
+                                      $output.append($newImg);
+                                      $hint.removeClass('alert-info');
+                                      $hint.addClass('alert-success');
+                                      $hint.html("Megcsináltad!");
+                                      $('.show-when-solved').fadeIn();
+                                      isSolved = true;
+                                    });
+          } else {
+            $hint.html("Győződj meg róla, hogy pontosan másoltad a kép helyét a <code>src</code> attribútumba.");
+            $codeInput.focus();
+            $('.show-when-solved').fadeOut();
+            isSolved = false;
+          }
+        } else {
+          $hint.html("Győződj meg róla, hogy mind a nyitó, mind a záró tagek a helyükön vannak.");
+          $codeInput.focus();
+          $('.show-when-solved').fadeOut();
+          isSolved = false;
+        }
+      } else {
+        $hint.html("Írj egy <code>&lt;img&gt;</code> taget, ami <code>src</code> jelzőt tartalmaz.");
+        $codeInput.focus();
+        $('.show-when-solved').fadeOut();
+        isSolved = false;
+      }
+    })
+
+  });
+</script>
+
+<script type="text/javascript">
+    
+    /** Loads the user submission */
+    var customLoadSubmissionHandler = function() {
+      if ($('#submission').val()) {
+        var submission = $('#submission').val();
+        $('.assignment-code .code-input').val(submission); // Loads the code input from the hidden one.
+        $('.check-solution').trigger('click'); // Fires a button-press event to trigger the validation.
+      }
+    };
+
+    /** Saves the user submission
+     * @param {function} callback
+     */
+    var customSaveSubmissionHandler = function(callback) {
+        // Saves the content of the input field, and loads it into the hidden input.
+        var submission = $('.assignment-code .code-input').val();
+        $('#submission').val(submission);
+
+        /* Don't forget skipped. */
+        $("#is-skipped").val(!isSolved);
+                
+        /* Do callback */
+        callback();
+    }
+</script>
+
+
+</section>
+  </body>
+</html>
