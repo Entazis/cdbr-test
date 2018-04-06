@@ -143,7 +143,7 @@
   </head>
   <body>
       <section class="content lesson-content">
-    <h2>Az anchor tag</h2>
+
       <style>
   .interactive-assignment .assignment-visualizer {
     margin-top: 5px;
@@ -191,14 +191,6 @@
   }
 </style>
 
-<p>A hivatkozások teszik az internetet azzá, ami: egy masszív, összekapcsolt információhálóvá.</p>
-
-<p>A hivatkozások (más néven linkek) olyan kattintható szövegrészletek, amelyek egy másik oldalra vezetnek, valahol a weben. <a href="/content/images/welcome-friends.gif" target="_blank">Mint például ez.</a></p>
-
-<p>Webfejlesztőként nagyon gyakran fogsz linkeket készíteni az <code>a</code>, vagyis anchor tag segítségével. (Az anchor angol szó magyarul horgonyt jelent.)</p>
-
-<p>Linket készíteni egyáltalán nem bonyolult feladat. Itt van például ez a szöveg, egy egyszerű kis <code>p</code> tagbe csomagolva. Nyomd meg a megfelelő gombot, hogy linkké alakítsd:</p>
-
 <div class="row interactive-assignment">
   <div class="row">
     <div class="assignment-controller col-md-12">
@@ -228,13 +220,6 @@
 </div> <!-- /.interactive-assignment -->
 
 <div class="show-when-tried" style="display:none;">
-  <p>Látod a különbséget? A szöveg körüli <code>p</code> tag <code>a</code> tagre cserélődött. Ez minden, amit tenned kell. Csak vedd körbe a linkké alakítandó szövegrészletet egy nyitó és záró anchor taggel, és kész is vagy.</p>
-
-  <p>Vagyis, majdnem kész. Még mindig meg kell mondanod, hogy a hivatkozás hová vezessen.</p>
-
-  <p>Ha megpróbálsz az újonnan készített hivatkozásodra kattintani, láthatod, hogy még nem működik. Miért? Mert a <code>href</code> attribútum üres.</p>
-
-  <p>Ezt fogjuk megoldani a következő feladatban.</p>
 </div>
 
 <script>
@@ -309,13 +294,6 @@
         callback();
     }
 </script>
-
-          <br>
-          <form id="custom-submission-form" name="submit-form" method="POST">
-              <input id="submission" type="hidden" name="submission" value="">
-              <input id="is-skipped" type="hidden" name="is_skipped" value="">
-              <button id="custom-submission-button" name="custom-submission-button" class="btn btn-primary center-block">Tovább</button>
-          </form>
       
       <script type="text/javascript">
           /* Escaping html tags */
@@ -542,12 +520,6 @@
         <div class="text-center text-muted footer-content">
             <a href="/"><img class="logo-footer" src="https://orange.codeberryschool.com/images/logo/logo@0.5x.png"></a>
             <a href="https://codeberryschool.com">CodeBerry Programozóiskola &copy; 2018</a>
-            <ul class="language-selector">
-                <li class="dropup">
-                    <a class="a-navbar" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="flag-icon flag-icon-hu"></i> <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="#" onclick="$('#setLang-en-US').submit();"><i class="flag-icon flag-icon-us"></i> English<form id="setLang-en-US" action="/i18n/setlocale" method="POST"><input type="hidden" name="locale" value="en-US"></form></a></li><li><a href="#" onclick="$('#setLang-id-ID').submit();"><i class="flag-icon flag-icon-id"></i> Bahasa Indonesia<form id="setLang-id-ID" action="/i18n/setlocale" method="POST"><input type="hidden" name="locale" value="id-ID"></form></a></li><li><a href="#" onclick="$('#setLang-es-MX').submit();"><i class="flag-icon flag-icon-mx"></i> Español (México)<form id="setLang-es-MX" action="/i18n/setlocale" method="POST"><input type="hidden" name="locale" value="es-MX"></form></a></li><li><a href="#" onclick="$('#setLang-hu-HU').submit();"><i class="flag-icon flag-icon-hu"></i> Magyar<i class="fa fa-ok"></i><form id="setLang-hu-HU" action="/i18n/setlocale" method="POST"><input type="hidden" name="locale" value="hu-HU"></form></a></li><li><a href="#" onclick="$('#setLang-pl-PL').submit();"><i class="flag-icon flag-icon-pl"></i> Polski<form id="setLang-pl-PL" action="/i18n/setlocale" method="POST"><input type="hidden" name="locale" value="pl-PL"></form></a></li><li><a href="#" onclick="$('#setLang-pt-BR').submit();"><i class="flag-icon flag-icon-br"></i> Português<form id="setLang-pt-BR" action="/i18n/setlocale" method="POST"><input type="hidden" name="locale" value="pt-BR"></form></a></li><li><a href="#" onclick="$('#setLang-ro-RO').submit();"><i class="flag-icon flag-icon-ro"></i> Română<form id="setLang-ro-RO" action="/i18n/setlocale" method="POST"><input type="hidden" name="locale" value="ro-RO"></form></a></li><li><a href="#" onclick="$('#setLang-vi-VN').submit();"><i class="flag-icon flag-icon-vn"></i> Tiếng Việt<form id="setLang-vi-VN" action="/i18n/setlocale" method="POST"><input type="hidden" name="locale" value="vi-VN"></form></a></li></ul>
-                </li>
-            </ul>
-            
         </div>
     </footer>
     <!-- Scripts -->
